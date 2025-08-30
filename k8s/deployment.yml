@@ -40,3 +40,11 @@ spec:
               port: 5500
             initialDelaySeconds: 10
             periodSeconds: 20
+          env:
+            - name: OPENROUTER_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: adaptai-api-key
+                  key: OPENROUTER_API_KEY
+            - name: LOG_LEVEL
+              value: "DEBUG"  
