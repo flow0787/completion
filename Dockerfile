@@ -24,4 +24,4 @@ USER appuser
 
 EXPOSE 5500
 
-ENTRYPOINT ["gunicorn", "-b", "0.0.0.0:5500", "app:app"]
+ENTRYPOINT ["python", "-m", "gunicorn", "-b", "0.0.0.0:5500", "app:app"]
