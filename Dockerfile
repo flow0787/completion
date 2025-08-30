@@ -14,7 +14,7 @@ RUN useradd appuser
 
 WORKDIR /app
 
-COPY --from=builder /root/.local /root/.local
+COPY --from=builder /usr/local /usr/local
 COPY --chown=appuser:appuser app.py .
 COPY --chown=appuser:appuser requirements.txt .
 
