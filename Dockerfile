@@ -1,5 +1,5 @@
 # build
-FROM python:3.11-slim as builder
+FROM python:3.9-slim as builder
 
 WORKDIR /app
 
@@ -8,7 +8,7 @@ COPY requirements.txt .
 RUN pip install --user --no-cache-dir -r requirements.txt
 
 # package
-FROM python:3.11-slim as prod
+FROM python:3.9-slim as prod
 
 RUN useradd appuser
 
