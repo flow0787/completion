@@ -5,7 +5,8 @@ import logging, os, requests, json
 app = Flask(__name__)
 OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
 log_level = os.getenv("LOG_LEVEL", "INFO").upper()
-app_version = "0.1"
+openrouter_model = os.getenv("OPENROUTER_MODEL", "meta-llama/llama-4-scout:free")
+app_version = "0.2"
 history = []
 
 # Configure logging
@@ -26,14 +27,14 @@ def healthcheck():
     })
 
 # Function to call OpenRouter API
-def call_openrouter(prompt):
+def call_openrouter(prompt, openrouter_model):
     url = "https://openrouter.ai/api/v1/chat/completions"
     headers = {
         "Authorization": f"Bearer {OPENROUTER_API_KEY}",
         "Content-Type": "application/json",
     }
     data = json.dumps({
-        "model": "meta-llama/llama-4-scout:free",
+        "model": openrouter_model,
         "stream": False,
         "messages": [{"role": "user", "content": prompt}]
     })
@@ -58,7 +59,7 @@ def completion():
 
     # Call OpenRouter API
     try:
-        api_response = call_openrouter(prompt)
+        api_response = call_openrouter(prompt, openrouter_model)
         logger.info("Successfully called OpenRouter API")
         message_content = api_response['choices'][0]['message']['content']
     except Exception as e:
@@ -85,5 +86,6 @@ def method_not_allowed(error):
     return jsonify({"error": "Method Not Allowed"}), 405
 
 if __name__ == '__main__':
+    debug_mode = True if log_level == "DEBUG" else False
     logger.info(f"Starting app version {app_version} with log level {log_level} on port 5500")
-    app.run(debug=True, host='0.0.0.0', port=5500)
+    app.run(debug=debug_mode, host='0.0.0.0', port=5500)

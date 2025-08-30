@@ -47,4 +47,6 @@ spec:
                   name: adaptai-api-key
                   key: OPENROUTER_API_KEY
             - name: LOG_LEVEL
-              value: "DEBUG"  
+              value: "DEBUG"
+            - name: OPENROUTER_MODEL
+              value: "meta-llama/llama-4-scout:free"
