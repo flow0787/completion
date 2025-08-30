@@ -1,0 +1,42 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: adaptai
+  labels:
+    app: adaptai
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: adaptai
+  template:
+    metadata:
+      labels:
+        app: adaptai
+    spec:
+      containers:
+        - name: adaptai
+          image: florienb/adaptai:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5500
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
+          readinessProbe:
+            httpGet:
+              path: /healthcheck
+              port: 5500
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /healthcheck
+              port: 5500
+            initialDelaySeconds: 10
+            periodSeconds: 20
