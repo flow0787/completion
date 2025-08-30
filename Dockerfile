@@ -18,7 +18,8 @@ COPY --from=builder /root/.local /home/appuser/.local
 COPY --chown=appuser:appuser app.py .
 COPY --chown=appuser:appuser requirements.txt .
 
-ENV PATH=/home/appuser/.local/bin:$PATH
+ENV PATH=/home/appuser/.local/bin:$PATH \
+    PYTHONPATH=/home/appuser/.local/lib/python3.9/site-packages:$PYTHONPATH
 
 USER appuser
 
