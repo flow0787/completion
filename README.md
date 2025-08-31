@@ -23,7 +23,7 @@ kubectl apply -f service.yml
 ### Using Helm
 Install Helm v3 as per the recommendations [here](https://helm.sh/docs/intro/install/).
 ```
-helm install -f /path/to/adaptai-chart/values.yml $RELEASE_NAME /path/to/adaptai-chart --create-namespace
+helm install -f /path/to/adaptai-chart/values.yml --set secret.OPENROUTER_API_KEY=$API_KEY $RELEASE_NAME /path/to/adaptai-chart --create-namespace
 ```
 
 ## Usage
