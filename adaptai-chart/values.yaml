@@ -54,7 +54,7 @@ AImodel: "meta-llama/llama-4-scout:free"
 
 # Secret configuration
 secret:
-  OPENROUTER_API_KEY: "test"
+  OPENROUTER_API_KEY: ""
 
 # Service configuration
 service:
