@@ -61,3 +61,4 @@ View the generated logs inside the browser of your choosing in Grafana -> Explor
 2. `/history` endpoint can be made persistent using either a volume mount and saving to a file or using a light sqlite database or a full-fledged database deployed in kubernetes
 3. Prometheus monitoring for all endpoints, for metrics such as requests, latency, etc, can be added by updating the app.py and making use of the prometheus module
 4. Log `/history` data so it can be saved in the loki database
+5. Lint and test the Helm chart inside the Actions pipeline
