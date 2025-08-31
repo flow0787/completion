@@ -9,7 +9,7 @@ Helps alleviate boredom by talking to the AI of your choosing.
 - Route requests to your AI of choice
  
 ## Deployment
-
+### Using kuberntes manifests
   - It is meant to run in Kubernetes. Install Minikube per details [here](https://minikube.sigs.k8s.io/docs/start/?arch=/macos/arm64/stable/binary%20download)
   - Add your OpenRouter API key inside `k8s/secret.yml`, base64 encoded
   - Define whatever OpenRouter model you wish to use inside by updating the  `OPENROUTER_MODEL` inside `k8s/deployment.yml`
@@ -19,6 +19,12 @@ kubectl apply -f deployment.yml
 kubectl apply -f secret.yml
 kubectl apply -f service.yml
 ```  
+
+### Using Helm
+Install Helm v3 as per the recommendations [here](https://helm.sh/docs/intro/install/).
+```
+helm install -f /path/to/adaptai-chart/values.yml $RELEASE_NAME /path/to/adaptai-chart --create-namespace
+```
 
 ## Usage
 
